@@ -6,6 +6,7 @@ import {Vector} from '../src/model/Vector';
 import {GVL} from '../src/GVL';
 import {GVLFactory} from '../../testing/lib/mjs/GVLFactory';
 
+
 describe('TCModel', (): void => {
 
   const runValidTest = (fieldName: string, handler: () => void): void => {
