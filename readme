@@ -1,0 +1,52 @@
+# Build prod project for private npm packages
+Go to Linux environment such as Putty(https://www.chiark.greenend.org.uk/~sgtatham/putty/latest.html).
+
+Install NodeJs 16.15.0, Yarn 1.22.17, Npm and Git.
+
+Clone repo https://github.com/GudniPallGudnason/iabtcf-es.git
+
+Checkout branch ch-1.5.6
+
+Install packages with yarn install
+
+Build project with yarn build
+
+Move files from Linux environment to your device, fetch files from modules/{cmpapi/cli/core}/lib, if Linux environment is Putty then get pscp from (https://www.chiark.greenend.org.uk/~sgtatham/putty/latest.html)
+And download files with this command for each module:
+pscp -r -i C:\Git\pkey.ppk root@51.159.234.1:/root/gudni/iabtcf-es/modules/cli/lib/* C:\Git\pscpfiles\cli
+
+# Create private npm package
+Create package.json
+npm init
+
+Create private git repo
+https://github.com/new
+
+Create Token
+https://github.com/settings/tokens
+Create repo, workflow og write:packages, have every thing checked in the categories
+
+# Publish package
+npm login -registry=https://npm.pkg.github.com
+username:<github username>
+password:<token>
+email:<github email>
+
+Go to package dir
+
+Remember to increase the version number
+
+npm publish
+
+# Use private npm package
+
+Create .npmrc file in project using the package, the file contains:
+@cookiehub-com:registry=https://npm.pkg.github.com
+//npm.pkg.github.com/:_authToken=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
+
+Add the dependencies in the package.json
+"dependencies": {
+    "@cookiehub-com/iabtcf-core": "^1.0.0",
+    "@cookiehub-com/iabtcf-cli": "^1.0.0",
+    "@cookiehub-com/iabtcf-cmpapi": "^1.0.0"
+  }
